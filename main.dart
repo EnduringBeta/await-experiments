@@ -47,6 +47,13 @@ void baselineTest() async {
   print(await getBigData());
 }
 
+// .
+void printTest() async {
+  countSeconds(6);
+  printSmallData();
+  printBigData();
+}
+
 // Visualize delay time
 void countSeconds(int s) {
   for (var i = 1; i <= s; i++) {
@@ -56,7 +63,8 @@ void countSeconds(int s) {
 
 /// Main function
 void main() {
-  baselineTest();
+  //baselineTest();
+  printTest();
 }
 
 // What happens with async function that returns void? Not Future<void>?
