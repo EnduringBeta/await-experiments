@@ -70,6 +70,14 @@ Future<void> printDataDontReturn() async {
   );
 }
 
+// Print inside function, don't return but do await
+Future<void> printDataJustAwait() async {
+  await Future.delayed(
+    const Duration(seconds: 3),
+    () => print("Some data here"),
+  );
+}
+
 // Return String in nested function/Future
 Future<String> getNestedData() async {
   Future<String> _getInternalData() async {
@@ -210,6 +218,15 @@ void dontReturnPrintTest() async {
   print('Don\'t return print test end');
 }
 
+// Wait 3s, print
+// (I expected this to behave like `dontReturnPrintTest`, but it did not)
+void awaitAwaitTest() async {
+  print('Don\'t return nested data test begin');
+  countSeconds(3);
+  await printDataJustAwait();
+  print('Don\'t return nested data test end');
+}
+
 // Compile error:
 // "Error: This expression has type 'void' and can't be used."
 void awaitVoidPrintTest() async {
@@ -256,6 +273,7 @@ void main() {
   //nakedAwaitTest();
   //voidPrintTest();
   //dontReturnPrintTest();
+  //awaitAwaitTest();
   //nestedDataTest();
   //badlyNestedDataTest();
   //dontReturnNestedDataTest();

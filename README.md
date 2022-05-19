@@ -11,9 +11,9 @@ tests themselves aren't asynchronous.
 ## Conclusions
 
 Functions `dontReturnPrintTest` and `dontReturnNestedDataTest` revealed the
-most to me. The race conditions and unusual behavior I was seeing on another
-project were caused by **not returning a future in functions that should**,
-even if it's `Future<void>`.
+most to me that **returning a future in functions that should**, is key, even
+if it's `Future<void>`. `awaitAwaitTest`, however, showed that `await` also
+suffices specifically for `Future<void>`.
 
 ## References
 
